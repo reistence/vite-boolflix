@@ -11,14 +11,9 @@ export default {
   },
   methods: {
     getRating(num) {
-      for (let i = 0; i <= num; i++) {
-        if (num >= i) {
-          console.log("piena");
-        } else {
-          console.log("mezza");
-        }
-      }
-      console.log(num);
+      num = Math.round(num / 2);
+
+      return num;
     },
   },
 };
@@ -26,6 +21,10 @@ export default {
 
 <template>
   <div class="card">
+    <img
+      :src="`https://image.tmdb.org/t/p/w342` + movie.backdrop_path"
+      alt=""
+    />
     <h1>{{ movie.title }}</h1>
     <p>{{ movie.original_title }}</p>
     <div>
@@ -68,13 +67,14 @@ export default {
         {{ movie.original_language }}</span
       >
     </div>
-    <!-- <h3>
+    <h3>
+      {{ getRating(movie.vote_average) }}
+
       <i
-        v-for="(star, index) in movie.vote_average"
-        :key="index"
+        v-for="n in getRating(movie.vote_average)"
         class="fa-solid fa-star"
       ></i>
-    </h3> -->
+    </h3>
   </div>
 </template>
 
