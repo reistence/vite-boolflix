@@ -21,4 +21,21 @@ export default {
     <button @click="$emit('performSearch')">Search</button>
   </div>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+input {
+  width: 70%;
+  padding: 0.3em 0.5em;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-right: 0.5em;
+}
+button {
+  background-color: red;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+}
+</style>

@@ -73,5 +73,14 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  color: red;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+.header-right {
+  width: 40%;
 }
 </style>

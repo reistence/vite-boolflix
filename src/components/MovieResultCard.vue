@@ -1,8 +1,8 @@
 <script>
 export default {
-  name: "SeriesResultCard",
+  name: "MovieResultCard",
   props: {
-    show: Object,
+    movie: Object,
   },
   data() {
     return {};
@@ -10,6 +10,7 @@ export default {
   methods: {
     getRating(num) {
       num = Math.round(num / 2);
+
       return num;
     },
   },
@@ -20,60 +21,61 @@ export default {
   <div class="card">
     <img
       class="thumbnail"
-      :src="`https://image.tmdb.org/t/p/w342` + show.backdrop_path"
+      :src="`https://image.tmdb.org/t/p/w342` + movie.backdrop_path"
       alt=""
     />
+
     <div class="card-txt">
-      <h1>{{ show.name }}</h1>
-      <p>{{ show.original_name }}</p>
+      <h1>{{ movie.title }}</h1>
+      <p>{{ movie.original_title }}</p>
       <div class="language">
         Language:
         <img
-          v-if="show.original_language === 'en'"
+          v-if="movie.original_language === 'en'"
           src="../assets/img/flags/en.png"
-          :alt="show.orignal_language"
+          :alt="movie.orignal_language"
         />
         <img
-          v-if="show.original_language === 'de'"
+          v-if="movie.original_language === 'de'"
           src="../assets/img/flags/de.png"
-          :alt="show.orignal_language"
+          :alt="movie.orignal_language"
         />
         <img
-          v-if="show.original_language === 'it'"
+          v-if="movie.original_language === 'it'"
           src="../assets/img/flags/it.png"
-          :alt="show.orignal_language"
+          :alt="movie.orignal_language"
         />
         <img
-          v-if="show.original_language === 'fr'"
+          v-if="movie.original_language === 'fr'"
           src="../assets/img/flags/fra.png"
-          :alt="show.orignal_language"
+          :alt="movie.orignal_language"
         />
         <img
-          v-if="show.original_language === 'es'"
+          v-if="movie.original_language === 'es'"
           src="../assets/img/flags/esp.png"
-          :alt="show.orignal_language"
+          :alt="movie.orignal_language"
         />
 
         <span
           v-else-if="
-            show.original_language != 'en' &&
-            show.original_language != 'de' &&
-            show.original_language != 'fr' &&
-            show.original_language != 'it' &&
-            show.original_language != 'es'
+            movie.original_language != 'en' &&
+            movie.original_language != 'de' &&
+            movie.original_language != 'fr' &&
+            movie.original_language != 'it' &&
+            movie.original_language != 'es'
           "
         >
-          {{ show.original_language }}</span
+          {{ movie.original_language }}</span
         >
       </div>
-      <h3>
-        {{ getRating(show.vote_average) }}
+      <p>
+        {{ getRating(movie.vote_average) }}
 
         <i
-          v-for="n in getRating(show.vote_average)"
+          v-for="n in getRating(movie.vote_average)"
           class="fa-solid fa-star"
         ></i>
-      </h3>
+      </p>
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
 import { store } from "../store";
 import SeriesResultCard from "./SeriesResultCard.vue";
 
-import AppResultCard from "./AppResultCard.vue";
+import MovieResultCard from "./MovieResultCard.vue";
 
 export default {
   name: "AppResultList",
@@ -12,7 +12,7 @@ export default {
     };
   },
   components: {
-    AppResultCard,
+    MovieResultCard,
     SeriesResultCard,
   },
 };
@@ -22,11 +22,11 @@ export default {
   <section>
     <h2>Movies</h2>
     <div class="row">
-      <AppResultCard
+      <MovieResultCard
         v-for="(movie, index) in store.movies"
         :key="index"
         :movie="movie"
-      ></AppResultCard>
+      ></MovieResultCard>
     </div>
   </section>
 
