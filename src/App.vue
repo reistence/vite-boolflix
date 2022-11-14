@@ -31,4 +31,7 @@ export default {
 
 <style lang="scss">
 @use "./styles/general.scss" as *;
+main {
+  padding: 3em 0;
+}
 </style>

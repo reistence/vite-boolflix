@@ -60,9 +60,11 @@ export default {
 section {
   width: 90%;
   margin: 0 auto;
+  margin-bottom: 2em;
 
   p {
     color: rgb(172, 160, 160);
+    margin-bottom: 1em;
   }
 }
 .row {
@@ -71,6 +73,7 @@ section {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+
   width: 100%;
 }
 </style>

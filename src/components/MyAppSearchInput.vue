@@ -22,13 +22,19 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
+div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1em;
+}
 input {
   width: 50%;
   padding: 0.3em 0.5em;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
-  margin-right: 0.5em;
 }
 button {
   background-color: red;

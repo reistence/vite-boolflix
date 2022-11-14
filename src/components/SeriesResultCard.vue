@@ -97,7 +97,7 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-left: 0.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 2em;
   width: calc(100% / 5 - 2.5em / 5);
   // border: 1px solid rgb(53, 49, 49);
   height: 300px;
@@ -110,6 +110,7 @@ export default {
     object-fit: cover;
     transform: perspective(600px) rotateY(0deg);
     backface-visibility: hidden;
+    border-radius: 5px;
 
     transition: transform 0.6s linear;
   }

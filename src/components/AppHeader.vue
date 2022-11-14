@@ -64,11 +64,14 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+header {
+  background-color: #000;
+  width: 100%;
+}
 .container {
   width: 95%;
   padding: 0.2em 0.5em;
   margin: 0 auto;
-  border: 1px solid black;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
