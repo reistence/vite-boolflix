@@ -4,6 +4,23 @@ export default {
   props: {
     movie: Object,
   },
+  data() {
+    return {
+      starRating: 0,
+    };
+  },
+  methods: {
+    getRating(num) {
+      for (let i = 0; i <= num; i++) {
+        if (num >= i) {
+          console.log("piena");
+        } else {
+          console.log("mezza");
+        }
+      }
+      console.log(num);
+    },
+  },
 };
 </script>
 
@@ -39,9 +56,25 @@ export default {
         :alt="movie.orignal_language"
       />
 
-      <span v-else> {{ movie.original_language }}</span>
+      <span
+        v-else-if="
+          movie.original_language != 'en' &&
+          movie.original_language != 'de' &&
+          movie.original_language != 'fr' &&
+          movie.original_language != 'it' &&
+          movie.original_language != 'es'
+        "
+      >
+        {{ movie.original_language }}</span
+      >
     </div>
-    <h3>{{ movie.vote_average }}</h3>
+    <!-- <h3>
+      <i
+        v-for="(star, index) in movie.vote_average"
+        :key="index"
+        class="fa-solid fa-star"
+      ></i>
+    </h3> -->
   </div>
 </template>
 
