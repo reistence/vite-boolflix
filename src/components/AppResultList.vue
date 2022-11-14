@@ -3,7 +3,9 @@ import AppResultCard from "./AppResultCard.vue";
 
 export default {
   name: "AppResultList",
-  components: AppResultCard,
+  components: {
+    AppResultCard,
+  },
 };
 </script>
 

@@ -1,14 +1,40 @@
 <script>
 import { store } from "../store";
+import axios from "axios";
+
 import MyAppSearchInput from "./MyAppSearchInput.vue";
 
 export default {
   name: "AppHeader",
-  components: MyAppSearchInput,
+  components: {
+    MyAppSearchInput,
+  },
   data() {
     return {
       store,
     };
+  },
+  methods: {
+    getContent() {
+      let moviesUrl = store.apiMovieURL;
+      let serieUrl = store.apiSeriesURL;
+
+      const params = {
+        api_key: store.apiKey,
+      };
+      if (this.store.searchKey !== "") {
+        params.query = this.store.searchKey;
+      }
+
+      axios
+        .get(moviesUrl, {
+          params: params,
+        })
+        .then((resp) => {
+          this.store.movies = resp.data.results;
+          console.log(this.store.movies);
+        });
+    },
   },
 };
 </script>
@@ -22,7 +48,7 @@ export default {
         </div>
       </div>
       <div class="header-right">
-        <MyAppSearchInput></MyAppSearchInput>
+        <MyAppSearchInput @performSearch="getContent"></MyAppSearchInput>
       </div>
     </div>
   </header>

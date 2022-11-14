@@ -19,5 +19,6 @@ export default {
   flex-direction: column;
   align-items: center;
   width: calc(100% / 6 - 1em);
+  border: 1px solid white;
 }
 </style>
