@@ -1,8 +1,15 @@
 <script>
+import { store } from "../store";
+
 import AppResultCard from "./AppResultCard.vue";
 
 export default {
   name: "AppResultList",
+  data() {
+    return {
+      store,
+    };
+  },
   components: {
     AppResultCard,
   },
@@ -13,14 +20,18 @@ export default {
   <section>
     <h2>Movies</h2>
     <div class="row">
-      <AppResultCard></AppResultCard>
+      <AppResultCard
+        v-for="(movie, index) in store.movies"
+        :key="index"
+        :movie="movie"
+      ></AppResultCard>
     </div>
   </section>
 
   <section>
     <h2>TV-Series</h2>
     <div class="row">
-      <AppResultCard></AppResultCard>
+      <!-- <AppResultCard></AppResultCard> -->
     </div>
   </section>
 </template>
@@ -36,5 +47,7 @@ section {
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
+  flex-wrap: wrap;
+  width: 100%;
 }
 </style>
