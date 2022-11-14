@@ -20,6 +20,13 @@ export default {
 <template>
   <div class="card">
     <img
+      v-if="movie.poster_path"
+      class="thumbnail"
+      :src="`https://image.tmdb.org/t/p/w342` + movie.poster_path"
+      alt=""
+    />
+    <img
+      v-else
       class="thumbnail"
       :src="`https://image.tmdb.org/t/p/w342` + movie.backdrop_path"
       alt=""

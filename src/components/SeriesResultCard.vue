@@ -19,10 +19,18 @@ export default {
 <template>
   <div class="card">
     <img
+      v-if="show.poster_path"
+      class="thumbnail"
+      :src="`https://image.tmdb.org/t/p/w342` + show.poster_path"
+      alt=""
+    />
+    <img
+      v-else
       class="thumbnail"
       :src="`https://image.tmdb.org/t/p/w342` + show.backdrop_path"
       alt=""
     />
+
     <div class="card-txt">
       <h1>{{ show.name }}</h1>
       <p v-show="show.name != show.original_name">{{ show.original_name }}</p>
