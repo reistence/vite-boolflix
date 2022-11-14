@@ -1,7 +1,7 @@
 <script>
 import { store } from "../store.js";
 export default {
-  name: "AppSearchInput",
+  name: "MyAppSearchInput",
   data() {
     return {
       store,
@@ -11,6 +11,6 @@ export default {
 </script>
 
 <template>
-  <input type="text" v-model="this.store.searchKey" />
+  <input type="text" v-model="this.store.searchKey" id="user-search" />
 </template>
 <style lang="scss" scoped></style>

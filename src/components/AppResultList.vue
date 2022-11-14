@@ -24,6 +24,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+section {
+  width: 90%;
+  margin: 0 auto;
+}
 .row {
   display: flex;
   flex-direction: row;

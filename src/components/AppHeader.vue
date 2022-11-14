@@ -1,10 +1,10 @@
 <script>
 import { store } from "../store";
-import AppSearchInput from "./AppSearchInput.vue";
+import MyAppSearchInput from "./MyAppSearchInput.vue";
 
 export default {
   name: "AppHeader",
-  components: AppSearchInput,
+  components: MyAppSearchInput,
   data() {
     return {
       store,
@@ -22,7 +22,7 @@ export default {
         </div>
       </div>
       <div class="header-right">
-        <AppSearchInput></AppSearchInput>
+        <MyAppSearchInput></MyAppSearchInput>
       </div>
     </div>
   </header>
