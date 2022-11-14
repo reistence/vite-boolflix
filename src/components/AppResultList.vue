@@ -1,5 +1,6 @@
 <script>
 import { store } from "../store";
+import SeriesResultCard from "./SeriesResultCard.vue";
 
 import AppResultCard from "./AppResultCard.vue";
 
@@ -12,6 +13,7 @@ export default {
   },
   components: {
     AppResultCard,
+    SeriesResultCard,
   },
 };
 </script>
@@ -31,7 +33,11 @@ export default {
   <section>
     <h2>TV-Series</h2>
     <div class="row">
-      <!-- <AppResultCard></AppResultCard> -->
+      <SeriesResultCard
+        v-for="(show, index) in store.series"
+        :key="index"
+        :show="show"
+      ></SeriesResultCard>
     </div>
   </section>
 </template>

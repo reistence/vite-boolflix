@@ -33,11 +33,15 @@ export default {
         .then((resp) => {
           this.store.movies = resp.data.results;
           console.log(this.store.movies);
+        });
 
-          // if (store.movies[0].original_language === "en") {
-          //   store.movies[0].original_language = "../assets/img/flags/en.png";
-          //   console.log(store.movies[0].original_language);
-          // }
+      axios
+        .get(serieUrl, {
+          params: params,
+        })
+        .then((resp) => {
+          this.store.series = resp.data.results;
+          console.log(this.store.series);
         });
     },
   },
