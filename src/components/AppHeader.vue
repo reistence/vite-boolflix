@@ -83,4 +83,27 @@ h1 {
 .header-right {
   width: 40%;
 }
+
+@media screen and (max-width: 580px) {
+  .container {
+    width: 100%;
+    h1 {
+      font-size: 1.5rem;
+    }
+    .header-right {
+      width: 60%;
+    }
+  }
+}
+@media screen and (max-width: 440px) {
+  .container {
+    width: 100%;
+    h1 {
+      font-size: 1.5rem;
+    }
+    .header-right {
+      width: 70%;
+    }
+  }
+}
 </style>

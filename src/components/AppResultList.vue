@@ -19,8 +19,15 @@ export default {
 </script>
 
 <template>
-  <section>
+  <p
+    class="entry-message"
+    v-if="store.movies.length === 0 && store.series.length === 0"
+  >
+    Insert a query in order to search through our Film and TV Series database
+  </p>
+  <section v-if="store.movies.length">
     <h2>Movies</h2>
+    <p>{{ store.movies.length }} match found</p>
     <div class="row">
       <MovieResultCard
         v-for="(movie, index) in store.movies"
@@ -30,8 +37,9 @@ export default {
     </div>
   </section>
 
-  <section>
+  <section v-if="store.series.length">
     <h2>TV-Series</h2>
+    <p>{{ store.series.length }} match found</p>
     <div class="row">
       <SeriesResultCard
         v-for="(show, index) in store.series"
@@ -43,16 +51,25 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.entry-message {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 section {
   width: 90%;
   margin: 0 auto;
+
+  p {
+    color: rgb(172, 160, 160);
+  }
 }
 .row {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.5em;
   flex-wrap: wrap;
   width: 100%;
 }

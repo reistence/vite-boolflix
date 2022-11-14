@@ -23,7 +23,7 @@ export default {
 </template>
 <style lang="scss" scoped>
 input {
-  width: 70%;
+  width: 50%;
   padding: 0.3em 0.5em;
   border: none;
   border-radius: 5px;
