@@ -15,6 +15,10 @@ export default {
       showMovieCast: false,
       tvCast: [],
       showTvCast: false,
+      movieGenres: [],
+      showMovieGenres: false,
+      tvGenres: [],
+      showTvGenres: false,
     };
   },
   computed: {
@@ -71,7 +75,50 @@ export default {
             params: params,
           })
           .then((resp) => {
+            console.log(resp.data.cast.slice(0, 5));
             return (this.tvCast = resp.data.cast.slice(0, 5));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    getMovieGenres(id) {
+      this.showMovieGenres = !this.showMovieGenres;
+
+      const params = {
+        api_key: store.apiKey,
+      };
+
+      let movieGenresUrl = `https://api.themoviedb.org/3/movie/${id}`;
+      if (this.showMovieGenres) {
+        axios
+          .get(movieGenresUrl, {
+            params: params,
+          })
+          .then((resp) => {
+            return (this.movieGenres = resp.data.genres.slice(0, 5));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    getTvGenres(id) {
+      this.showTvGenres = !this.showTvGenres;
+
+      const params = {
+        api_key: store.apiKey,
+      };
+
+      let tvGenresUrl = `https://api.themoviedb.org/3/tv/${id}`;
+      if (this.showTvGenres) {
+        axios
+          .get(tvGenresUrl, {
+            params: params,
+          })
+          .then((resp) => {
+            return (this.tvGenres = resp.data.genres.slice(0, 5));
           })
           .catch((err) => {
             console.log(err);
@@ -110,26 +157,6 @@ export default {
           :src="getImgUrl(item.original_language)"
           :alt="item.orignal_language"
         />
-        <!-- <img
-          v-if="item.original_language === 'de'"
-          src="../assets/img/flags/de.png"
-          :alt="item.orignal_language"
-        />
-        <img
-          v-if="item.original_language === 'it'"
-          src="../assets/img/flags/it.png"
-          :alt="item.orignal_language"
-        />
-        <img
-          v-if="item.original_language === 'fr'"
-          src="../assets/img/flags/fra.png"
-          :alt="item.orignal_language"
-        />
-        <img
-          v-if="item.original_language === 'es'"
-          src="../assets/img/flags/esp.png"
-          :alt="item.orignal_language"
-        /> -->
 
         <span v-else>{{ item.original_language }}</span>
       </div>
@@ -159,9 +186,29 @@ export default {
         <span v-show="this.showMovieCast" v-for="actor in this.movieCast"
           >{{ actor.name }},
         </span>
-        <span v-show="this.showTvCast" v-for="actor in this.tvCast"
+        <span
+          v-show="this.showTvCast"
+          v-for="(actor, index) in this.tvCast"
+          :key="index"
           >{{ actor.name }},
         </span>
+      </p>
+      <p class="genres">
+        <button
+          @click="
+            this.getMovieGenres(item.id)
+              ? this.getMovieGenres(item.id)
+              : this.getTvGenres(item.id)
+          "
+        >
+          Show genres:
+        </button>
+        <span v-show="this.showMovieGenres" v-for="genre in this.movieGenres">
+          {{ genre.name }},
+        </span>
+        <span v-show="this.showTvGenres" v-for="genre in this.tvGenres"
+          >{{ genre.name }} ,</span
+        >
       </p>
     </div>
   </div>
@@ -233,7 +280,8 @@ export default {
       color: rgb(172, 160, 160);
     }
 
-    .cast {
+    .cast,
+    .genres {
       button {
         cursor: pointer;
         color: inherit;
