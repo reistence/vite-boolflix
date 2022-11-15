@@ -12,6 +12,7 @@ export default {
       store,
       mainLanguages: ["en", "de", "it", "fr", "es"],
       movieCast: [],
+
       showMovieCast: false,
       tvCast: [],
       showTvCast: false,
@@ -19,6 +20,8 @@ export default {
       showMovieGenres: false,
       tvGenres: [],
       showTvGenres: false,
+      noCastInfo: false,
+      noGenreInfo: false,
     };
   },
   computed: {
@@ -55,6 +58,10 @@ export default {
           })
           .then((resp) => {
             this.movieCast = resp.data.cast.slice(0, 5);
+            console.log(this.movieCast);
+            if (this.movieCast.length === 0) {
+              this.noCastInfo = true;
+            }
             return this.movieCast;
           })
           .catch((err) => {
@@ -78,6 +85,9 @@ export default {
           .then((resp) => {
             // console.log(resp.data.cast.slice(0, 5));
             this.tvCast = resp.data.cast.slice(0, 5);
+            if (this.tvCast.length === 0) {
+              this.noCastInfo = true;
+            }
             return this.tvCast;
           })
           .catch((err) => {
@@ -99,7 +109,11 @@ export default {
             params: params,
           })
           .then((resp) => {
-            return (this.movieGenres = resp.data.genres.slice(0, 5));
+            this.movieGenres = resp.data.genres.slice(0, 5);
+            if (this.movieGenres.length === 0) {
+              this.noGenreInfo = true;
+            }
+            return this.movieGenres;
           })
           .catch((err) => {
             console.log(err);
@@ -120,7 +134,11 @@ export default {
             params: params,
           })
           .then((resp) => {
-            return (this.tvGenres = resp.data.genres.slice(0, 5));
+            this.tvGenres = resp.data.genres.slice(0, 5);
+            if (this.tvGenres.length === 0) {
+              this.noGenreInfo = true;
+            }
+            return this.tvGenres;
           })
           .catch((err) => {
             console.log(err);
@@ -145,13 +163,11 @@ export default {
       :src="`https://image.tmdb.org/t/p/w342` + item.backdrop_path"
       alt=""
     />
-
     <div class="card-txt">
       <h3>{{ getTitle }}</h3>
       <p v-show="item.title != item.original_title">
         {{ getOriginalTitle }}
       </p>
-
       <div class="language">
         Language:
         <img
@@ -178,7 +194,7 @@ export default {
       <p class="cast">
         <button
           @click="
-            this.getMovieCast(item.id)
+            this.item.title
               ? this.getMovieCast(item.id)
               : this.getTvCast(item.id)
           "
@@ -189,6 +205,7 @@ export default {
           ><a href="">{{ actor.name }}</a
           >&nbsp;
         </span>
+        <span v-show="this.noCastInfo === true">no info available</span>
         <span
           v-show="this.showTvCast"
           v-for="(actor, index) in this.tvCast"
@@ -201,7 +218,7 @@ export default {
       <p class="genres">
         <button
           @click="
-            this.getMovieGenres(item.id)
+            this.item.title
               ? this.getMovieGenres(item.id)
               : this.getTvGenres(item.id)
           "
@@ -212,6 +229,7 @@ export default {
           <a href="">{{ genre.name }}</a
           >&nbsp;
         </span>
+        <span v-show="this.noGenreInfo === true">no info available</span>
         <span v-show="this.showTvGenres" v-for="genre in this.tvGenres">
           <a href="">{{ genre.name }}</a
           >&nbsp;</span
@@ -266,6 +284,7 @@ export default {
 
     .language {
       display: flex;
+      font-size: 0.7rem;
       flex-direction: row;
       align-items: center;
       gap: 0.5em;

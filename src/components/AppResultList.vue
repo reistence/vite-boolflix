@@ -27,8 +27,11 @@ export default {
   </p>
   <section v-if="store.movies.length">
     <h2>Movies</h2>
-    <p>{{ store.movies.length }} match found</p>
-    <div class="row">
+    <p>
+      {{ store.movies.length }}
+      {{ store.movies.length === 1 ? "match" : "matches" }} found
+    </p>
+    <div class="row" v-if="store.movies.length">
       <ResultCard
         v-for="(movie, index) in store.movies"
         :key="index"
@@ -39,8 +42,12 @@ export default {
 
   <section v-if="store.series.length">
     <h2>TV-Series</h2>
-    <p>{{ store.series.length }} match found</p>
-    <div class="row">
+    <p>
+      {{ store.series.length }}
+      {{ store.series.length === 1 ? "match" : "matches" }} found
+    </p>
+
+    <div class="row" v-if="store.series.length">
       <ResultCard
         v-for="(show, index) in store.series"
         :key="index"
