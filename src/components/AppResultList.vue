@@ -2,7 +2,7 @@
 import { store } from "../store";
 import SeriesResultCard from "./SeriesResultCard.vue";
 
-import MovieResultCard from "./MovieResultCard.vue";
+import ResultCard from "./ResultCard.vue";
 
 export default {
   name: "AppResultList",
@@ -12,7 +12,7 @@ export default {
     };
   },
   components: {
-    MovieResultCard,
+    ResultCard,
     SeriesResultCard,
   },
 };
@@ -29,11 +29,11 @@ export default {
     <h2>Movies</h2>
     <p>{{ store.movies.length }} match found</p>
     <div class="row">
-      <MovieResultCard
+      <ResultCard
         v-for="(movie, index) in store.movies"
         :key="index"
-        :movie="movie"
-      ></MovieResultCard>
+        :item="movie"
+      ></ResultCard>
     </div>
   </section>
 
@@ -41,11 +41,11 @@ export default {
     <h2>TV-Series</h2>
     <p>{{ store.series.length }} match found</p>
     <div class="row">
-      <SeriesResultCard
+      <ResultCard
         v-for="(show, index) in store.series"
         :key="index"
-        :show="show"
-      ></SeriesResultCard>
+        :item="show"
+      ></ResultCard>
     </div>
   </section>
 </template>

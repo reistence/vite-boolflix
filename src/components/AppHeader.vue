@@ -16,9 +16,6 @@ export default {
   },
   methods: {
     getContent() {
-      let moviesUrl = store.apiMovieURL;
-      let serieUrl = store.apiSeriesURL;
-
       const params = {
         api_key: store.apiKey,
       };
@@ -26,6 +23,13 @@ export default {
         params.query = this.store.searchKey;
       }
 
+      this.getMovies(params);
+
+      this.getTvSeries(params);
+    },
+
+    getMovies(params) {
+      let moviesUrl = store.apiMovieURL;
       axios
         .get(moviesUrl, {
           params: params,
@@ -34,6 +38,10 @@ export default {
           this.store.movies = resp.data.results;
           console.log(this.store.movies);
         });
+    },
+
+    getTvSeries(params) {
+      let serieUrl = store.apiSeriesURL;
 
       axios
         .get(serieUrl, {
@@ -65,8 +73,12 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.854);
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
 }
 .container {
   width: 95%;

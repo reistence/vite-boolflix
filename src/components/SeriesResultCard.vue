@@ -5,11 +5,14 @@ export default {
     show: Object,
   },
   data() {
-    return {};
+    return {
+      mainLanguages: ["en", "de", "it", "fr", "es"],
+    };
   },
   methods: {
     getRating(num) {
       num = Math.round(num / 2);
+      // num = num / 2;
       return num;
     },
   },
@@ -82,6 +85,10 @@ export default {
           v-for="n in getRating(show.vote_average)"
           class="fa-solid fa-star"
         ></i>
+        <!-- <i
+          v-show="show.vote_average / 2 - getRating(show.vote_average) != 0"
+          class="fa-solid fa-star-half"
+        ></i> -->
         <i
           v-for="n in 5 - getRating(show.vote_average)"
           class="fa-regular fa-star"
@@ -97,9 +104,9 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-left: 0.5em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   width: calc(100% / 5 - 2.5em / 5);
-  // border: 1px solid rgb(53, 49, 49);
+  border: 1px solid rgb(53, 49, 49);
   height: 300px;
   border-radius: 10px;
   overflow: hidden;
@@ -107,6 +114,8 @@ export default {
 
   .thumbnail {
     height: 100%;
+    width: 100%;
+
     object-fit: cover;
     transform: perspective(600px) rotateY(0deg);
     backface-visibility: hidden;
@@ -118,15 +127,15 @@ export default {
     position: absolute;
     padding: 0.5em;
     gap: 0;
-    height: 97%;
+    height: 100%;
     flex-direction: column;
     align-items: flex-start;
-    width: 95%;
+    width: 100%;
     left: 0;
     top: 0;
     background-color: rgba(66, 60, 60, 0.816);
     display: flex;
-    transform: perspective(600px) rotateY(180deg);
+    transform: perspective(700px) rotateY(180deg);
     backface-visibility: hidden;
     transition: transform 0.6s linear;
     & > * {
