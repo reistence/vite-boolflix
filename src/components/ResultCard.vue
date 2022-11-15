@@ -247,7 +247,8 @@ export default {
   margin-right: 0.5em;
   margin-bottom: 1em;
   width: calc(100% / 5 - 2.5em / 5);
-  border: 1px solid rgb(53, 49, 49);
+  // border: 1px solid rgb(53, 49, 49);
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
   height: 350px;
   border-radius: 10px;
   overflow: hidden;
@@ -280,6 +281,10 @@ export default {
     transition: transform 0.6s linear;
     & > * {
       margin: 0.1em;
+    }
+
+    h3 {
+      font-size: 1.1rem;
     }
 
     .language {
@@ -319,6 +324,7 @@ export default {
         font-size: 0.7rem;
         a {
           text-decoration: underline;
+          color: rgb(169, 156, 156);
         }
       }
     }

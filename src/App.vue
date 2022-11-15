@@ -32,7 +32,7 @@ export default {
 <style lang="scss">
 @use "./styles/general.scss" as *;
 main {
-  padding: 5em 0;
+  padding: 6em 0;
   overflow-y: scroll;
   background-color: rgb(35, 35, 35);
 }

@@ -75,6 +75,7 @@ export default {
 header {
   background-color: rgba(0, 0, 0, 0.854);
   width: 100%;
+  padding: 0.5em 0;
   position: fixed;
   top: 0;
   left: 0;
