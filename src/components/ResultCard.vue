@@ -12,7 +12,9 @@ export default {
       store,
       mainLanguages: ["en", "de", "it", "fr", "es"],
       movieCast: [],
-      showCast: false,
+      showMovieCast: false,
+      tvCast: [],
+      showTvCast: false,
     };
   },
   computed: {
@@ -35,20 +37,44 @@ export default {
       return new URL(`../assets/img/flags/${name}.png`, import.meta.url).href;
     },
     getMovieCast(id) {
-      this.showCast = !this.showCast;
+      this.showMovieCast = !this.showMovieCast;
       const params = {
         api_key: store.apiKey,
       };
 
       let movieCreditsUrl = `https://api.themoviedb.org/3/movie/${id}/credits`;
 
-      if (this.showCast) {
+      if (this.showMovieCast) {
         axios
           .get(movieCreditsUrl, {
             params: params,
           })
           .then((resp) => {
             return (this.movieCast = resp.data.cast.slice(0, 5));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    getTvCast(id) {
+      this.showTvCast = !this.showTvCast;
+      const params = {
+        api_key: store.apiKey,
+      };
+
+      let tvCreditsUrl = `https://api.themoviedb.org/3/tv/${id}/credits`;
+
+      if (this.showTvCast) {
+        axios
+          .get(tvCreditsUrl, {
+            params: params,
+          })
+          .then((resp) => {
+            return (this.tvCast = resp.data.cast.slice(0, 5));
+          })
+          .catch((err) => {
+            console.log(err);
           });
       }
     },
@@ -121,8 +147,19 @@ export default {
         ></i>
       </p>
       <p class="cast">
-        <button @click="this.getMovieCast(item.id)">Show cast:</button>
-        <span v-show="this.showCast" v-for="actor in this.movieCast"
+        <button
+          @click="
+            this.getMovieCast(item.id)
+              ? this.getMovieCast(item.id)
+              : this.getTvCast(item.id)
+          "
+        >
+          Show cast:
+        </button>
+        <span v-show="this.showMovieCast" v-for="actor in this.movieCast"
+          >{{ actor.name }},
+        </span>
+        <span v-show="this.showTvCast" v-for="actor in this.tvCast"
           >{{ actor.name }},
         </span>
       </p>
