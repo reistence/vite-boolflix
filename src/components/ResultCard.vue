@@ -54,7 +54,8 @@ export default {
             params: params,
           })
           .then((resp) => {
-            return (this.movieCast = resp.data.cast.slice(0, 5));
+            this.movieCast = resp.data.cast.slice(0, 5);
+            return this.movieCast;
           })
           .catch((err) => {
             console.log(err);
@@ -75,8 +76,9 @@ export default {
             params: params,
           })
           .then((resp) => {
-            console.log(resp.data.cast.slice(0, 5));
-            return (this.tvCast = resp.data.cast.slice(0, 5));
+            // console.log(resp.data.cast.slice(0, 5));
+            this.tvCast = resp.data.cast.slice(0, 5);
+            return this.tvCast;
           })
           .catch((err) => {
             console.log(err);
@@ -184,13 +186,16 @@ export default {
           Show cast:
         </button>
         <span v-show="this.showMovieCast" v-for="actor in this.movieCast"
-          >{{ actor.name }},
+          ><a href="">{{ actor.name }}</a
+          >&nbsp;
         </span>
         <span
           v-show="this.showTvCast"
           v-for="(actor, index) in this.tvCast"
           :key="index"
-          >{{ actor.name }},
+        >
+          <a href="">{{ actor.name }}</a
+          >&nbsp;
         </span>
       </p>
       <p class="genres">
@@ -204,10 +209,12 @@ export default {
           Show genres:
         </button>
         <span v-show="this.showMovieGenres" v-for="genre in this.movieGenres">
-          {{ genre.name }},
+          <a href="">{{ genre.name }}</a
+          >&nbsp;
         </span>
-        <span v-show="this.showTvGenres" v-for="genre in this.tvGenres"
-          >{{ genre.name }} ,</span
+        <span v-show="this.showTvGenres" v-for="genre in this.tvGenres">
+          <a href="">{{ genre.name }}</a
+          >&nbsp;</span
         >
       </p>
     </div>
@@ -291,6 +298,9 @@ export default {
       }
       span {
         font-size: 0.7rem;
+        a {
+          text-decoration: underline;
+        }
       }
     }
   }
