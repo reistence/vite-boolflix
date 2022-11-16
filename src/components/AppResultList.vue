@@ -235,6 +235,7 @@ export default {
   div {
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
   .select-wrapper {
     display: flex;
@@ -245,7 +246,6 @@ export default {
       content: "^";
       font-size: 1rem;
       position: absolute;
-      top: 2px;
       right: 10px;
       transform: rotate(180deg);
       cursor: pointer;

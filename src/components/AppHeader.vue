@@ -99,7 +99,7 @@ header {
 }
 
 .header-left {
-  width: 30%;
+  width: 20%;
   .logo {
     width: 100%;
     a {
