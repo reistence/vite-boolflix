@@ -264,6 +264,7 @@ export default {
 
     transform: perspective(600px) rotateY(0deg);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 
     transition: transform 0.6s linear;
   }
@@ -281,6 +282,8 @@ export default {
     display: flex;
     transform: perspective(600px) rotateY(180deg);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
     transition: transform 0.6s linear;
     & > * {
       margin: 0.1em;

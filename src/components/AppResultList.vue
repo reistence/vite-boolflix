@@ -228,12 +228,17 @@ export default {
   justify-content: center;
   flex-wrap: wrap;
   gap: 1em;
+  label {
+    font-size: 1.2rem;
+    margin: 0 0.5em;
+  }
   select {
     background-color: red;
     padding: 0.2em 0.5em;
     border-radius: 15px;
     color: white;
     margin-left: 0.5em;
+    font-size: 1rem;
   }
 }
 
