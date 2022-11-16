@@ -178,7 +178,12 @@ export default {
       alt=""
     />
     <!-- alternative img if not present in the api db -->
-    <img v-else class="thumbnail" src="../assets/img/flags/no-img.png" alt="" />
+    <img
+      v-else
+      class="thumbnail"
+      src="../assets/img/flags/dark-placeholder.png"
+      alt=""
+    />
     <!-- CARD TEXT SECTION -->
     <div class="card-txt">
       <!-- TITLE -->
