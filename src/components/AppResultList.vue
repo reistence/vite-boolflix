@@ -33,7 +33,7 @@ export default {
       })
       .then((resp) => {
         this.movieGenreList = resp.data.genres;
-        console.log(this.movieGenreList);
+        // console.log(this.movieGenreList);
       })
       .catch((err) => {
         console.log(err);
@@ -45,7 +45,7 @@ export default {
       })
       .then((resp) => {
         this.tvGenreList = resp.data.genres;
-        console.log(this.tvGenreList);
+        // console.log(this.tvGenreList);
       })
       .catch((err) => {
         console.log(err);
@@ -56,15 +56,15 @@ export default {
       store.filteredMovies = store.movies.filter((movie) =>
         movie.genre_ids.includes(store.selectedMovieGenre.id)
       );
-      console.log(store.filteredMovies);
+      // console.log(store.filteredMovies);
       return store.filteredMovies;
     },
     filterTvSeries() {
       store.filteredTvSeries = store.series.filter((serie) =>
         serie.genre_ids.includes(store.selectedTvGenre.id)
       );
-      console.log(store.filteredTvSeries);
-      return store.filterTvSeries;
+      // console.log(store.filteredTvSeries);
+      return store.filteredTvSeries;
     },
   },
 };
@@ -78,7 +78,7 @@ export default {
     Welcome!<br />Insert a query in order to search through our Film and TV
     Series database
   </p>
-
+  <!-- FILTERS INPUT-->
   <div v-else class="filters">
     <div>
       <label for="movie-genres-list">Movies: </label>
@@ -110,14 +110,17 @@ export default {
       </select>
     </div>
   </div>
-
+  <!-- /FILTERS INPUT-->
+  <!-- FILM SECTION NO GENRE -->
   <section v-if="store.movies.length && !store.filteredMovies.length">
     <h2>Movies</h2>
     <p>
       {{ store.movies.length }}
       {{ store.movies.length === 1 ? "match" : "matches" }} found
     </p>
-    <p v-if="!store.filteredMovies.length">No movie matches this genre</p>
+    <p v-if="!store.filteredMovies.length && store.selectedMovieGenre">
+      No movie matches this genre
+    </p>
 
     <div class="row" v-if="store.movies.length">
       <ResultCard
@@ -127,7 +130,8 @@ export default {
       ></ResultCard>
     </div>
   </section>
-
+  <!-- /FILM SECTION NO GENRE -->
+  <!-- FILM SECTION + GENRE -->
   <section v-if="store.filteredMovies.length">
     <h2>Movies</h2>
     <p>
@@ -143,6 +147,8 @@ export default {
       ></ResultCard>
     </div>
   </section>
+  <!-- /FILM SECTION + GENRE -->
+  <!-- TV SERIES SECTION NO GENRE -->
 
   <section v-if="store.series.length && !store.filteredTvSeries.length">
     <h2>TV-Series</h2>
@@ -150,7 +156,9 @@ export default {
       {{ store.series.length }}
       {{ store.series.length === 1 ? "match" : "matches" }} found
     </p>
-    <p v-if="!store.filteredTvSeries.length">No Tv series match this genre</p>
+    <p v-if="!store.filteredTvSeries.length && store.selectedTvGenre">
+      No Tv series match this genre
+    </p>
 
     <div class="row" v-if="store.series.length">
       <ResultCard
@@ -160,7 +168,9 @@ export default {
       ></ResultCard>
     </div>
   </section>
+  <!-- /TV SERIES SECTION NO GENRE -->
 
+  <!-- TV SERIES SECTION + GENRE -->
   <section v-if="store.filteredTvSeries.length">
     <h2>Tv Series</h2>
     <p>
@@ -176,10 +186,7 @@ export default {
       ></ResultCard>
     </div>
   </section>
-  <!-- <section v-else>
-    <h2>Tv Series</h2>
-    <p>No Tv series match this genre</p>
-  </section> -->
+  <!-- /TV SERIES SECTION + GENRE -->
 </template>
 
 <style lang="scss" scoped>

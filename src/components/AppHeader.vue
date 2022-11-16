@@ -39,7 +39,7 @@ export default {
         })
         .then((resp) => {
           this.store.movies = resp.data.results;
-          console.log(this.store.movies);
+          // console.log(this.store.movies);
         });
     },
 
@@ -52,7 +52,7 @@ export default {
         })
         .then((resp) => {
           this.store.series = resp.data.results;
-          console.log(this.store.series);
+          // console.log(this.store.series);
         });
     },
   },
