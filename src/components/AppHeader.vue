@@ -26,8 +26,11 @@ export default {
       this.getMovies(params);
 
       this.getTvSeries(params);
+      store.selectedMovieGenre = "";
+      store.selectedTvGenre = "";
+      store.filteredMovies = [];
+      store.filteredTvSeries = [];
     },
-
     getMovies(params) {
       let moviesUrl = store.apiMovieURL;
       axios

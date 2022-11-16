@@ -158,11 +158,12 @@ export default {
       alt=""
     />
     <img
-      v-else
+      v-else-if="item.backdrop_path"
       class="thumbnail"
       :src="`https://image.tmdb.org/t/p/w342` + item.backdrop_path"
       alt=""
     />
+    <img v-else class="thumbnail" src="../assets/img/flags/no-img.png" alt="" />
     <div class="card-txt">
       <h3>{{ getTitle }}</h3>
       <p v-show="item.title != item.original_title">

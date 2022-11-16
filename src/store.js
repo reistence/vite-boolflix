@@ -9,4 +9,8 @@ export const store = reactive({
   movies: [],
   series: [],
   loading: false,
+  selectedMovieGenre: "",
+  selectedTvGenre: "",
+  filteredMovies: [],
+  filteredTvSeries: [],
 });
