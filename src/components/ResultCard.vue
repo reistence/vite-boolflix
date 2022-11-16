@@ -180,8 +180,10 @@ export default {
         <span v-else>{{ item.original_language }}</span>
       </div>
       <div class="description">{{ item.overview }}</div>
-      <p>
-        <!-- {{ getRating(movie.vote_average) }} -->
+      <p class="rating">
+        <span>
+          {{ item.vote_average }}
+        </span>
 
         <i
           v-for="n in getRating(item.vote_average)"
@@ -310,6 +312,13 @@ export default {
       -webkit-box-orient: vertical;
       overflow: hidden;
       color: rgb(172, 160, 160);
+    }
+
+    .rating {
+      span {
+        color: rgb(224, 20, 20);
+        margin-right: 0.3em;
+      }
     }
 
     .cast,
