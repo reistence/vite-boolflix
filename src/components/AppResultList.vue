@@ -86,32 +86,36 @@ export default {
   <div v-else class="filters">
     <div>
       <label for="movie-genres-list">Movies: </label>
-      <select
-        name="movie-genres-list"
-        id="movieGenresList"
-        v-model="store.selectedMovieGenre"
-        @change="filterMovies"
-      >
-        <option value="">Choose a Genre</option>
-        <option v-for="genre in this.movieGenreList" :value="genre">
-          {{ genre.name }}
-        </option>
-      </select>
+      <div class="select-wrapper">
+        <select
+          name="movie-genres-list"
+          id="movieGenresList"
+          v-model="store.selectedMovieGenre"
+          @change="filterMovies"
+        >
+          <option value="">Choose a Genre &nbsp; &nbsp;</option>
+          <option v-for="genre in this.movieGenreList" :value="genre">
+            {{ genre.name }}
+          </option>
+        </select>
+      </div>
     </div>
 
     <div>
       <label for="tv-genres-list">Tv-Series: </label>
-      <select
-        name="tv-genres-list"
-        id="tvGenresList"
-        v-model="store.selectedTvGenre"
-        @change="filterTvSeries"
-      >
-        <option value="">Choose a Genre</option>
-        <option v-for="genre in this.tvGenreList" :value="genre">
-          {{ genre.name }}
-        </option>
-      </select>
+      <div class="select-wrapper">
+        <select
+          name="tv-genres-list"
+          id="tvGenresList"
+          v-model="store.selectedTvGenre"
+          @change="filterTvSeries"
+        >
+          <option value="">Choose a Genre &nbsp; &nbsp;</option>
+          <option v-for="genre in this.tvGenreList" :value="genre">
+            {{ genre.name }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
   <!-- /FILTERS INPUT-->
@@ -228,6 +232,25 @@ export default {
   justify-content: center;
   flex-wrap: wrap;
   gap: 1em;
+  div {
+    display: flex;
+    flex-direction: row;
+  }
+  .select-wrapper {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    &::after {
+      content: "^";
+      font-size: 1rem;
+      position: absolute;
+      top: 2px;
+      right: 10px;
+      transform: rotate(180deg);
+      cursor: pointer;
+    }
+  }
   label {
     font-size: 1.2rem;
     margin: 0 0.5em;
@@ -239,6 +262,11 @@ export default {
     color: white;
     margin-left: 0.5em;
     font-size: 1rem;
+    width: max-content;
+    border: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
   }
 }
 
