@@ -1,16 +1,12 @@
 <script>
 import { store } from "./store";
 import AppHeader from "./components/AppHeader.vue";
-// import MyAppSearchInput from "./components/MyAppSearchInput.vue";
 import AppResultList from "./components/AppResultList.vue";
-// import AppResultCard from "./components/AppResultCard.vue";
 
 export default {
   components: {
     AppHeader,
-    // MyAppSearchInput,
     AppResultList,
-    // AppResultCard,
   },
   data() {
     return {
@@ -23,8 +19,10 @@ export default {
 </script>
 
 <template>
+  <!-- header components that handles the search input in it-->
   <AppHeader></AppHeader>
   <main>
+    <!-- main components that handles the displaying of content -->
     <AppResultList></AppResultList>
   </main>
 </template>

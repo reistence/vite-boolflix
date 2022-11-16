@@ -11,23 +11,29 @@ export default {
     return {
       store,
       mainLanguages: ["en", "de", "it", "fr", "es"],
+      // empty array and flag to handle the retrieved movie cast data
       movieCast: [],
-
       showMovieCast: false,
+      // empty array and flag to handle the retrieved tv-series cast data
       tvCast: [],
       showTvCast: false,
+      // empty array and flag to handle the retrieved movie genres data
       movieGenres: [],
       showMovieGenres: false,
+      // empty array and flag to handle the retrieved tv-series genres data
       tvGenres: [],
       showTvGenres: false,
+      // corner case in which the selected item does not have any cast/genre info available
       noCastInfo: false,
       noGenreInfo: false,
     };
   },
   computed: {
+    // distinguish between movie/series name according to the key
     getTitle() {
       return this.item.title ? this.item.title : this.item.name;
     },
+    // distinguish between movie/series original name according to the key
     getOriginalTitle() {
       return this.item.original_title
         ? this.item.original_title
@@ -35,14 +41,17 @@ export default {
     },
   },
   methods: {
+    // process the rating of the item
     getRating(num) {
       num = Math.round(num / 2);
 
       return num;
     },
+    // create a dynamic URL for imgs
     getImgUrl(name) {
       return new URL(`../assets/img/flags/${name}.png`, import.meta.url).href;
     },
+    // retrieve movie cast
     getMovieCast(id) {
       this.showMovieCast = !this.showMovieCast;
       const params = {
@@ -69,6 +78,7 @@ export default {
           });
       }
     },
+    // retrieve tv-series cast
     getTvCast(id) {
       this.showTvCast = !this.showTvCast;
       const params = {
@@ -95,6 +105,7 @@ export default {
           });
       }
     },
+    // retrieve movie genres
     getMovieGenres(id) {
       this.showMovieGenres = !this.showMovieGenres;
 
@@ -120,6 +131,7 @@ export default {
           });
       }
     },
+    // retrieve tv-series genres
     getTvGenres(id) {
       this.showTvGenres = !this.showTvGenres;
 
@@ -151,24 +163,30 @@ export default {
 
 <template>
   <div class="card">
+    <!-- primary img -->
     <img
       v-if="item.poster_path"
       class="thumbnail"
       :src="`https://image.tmdb.org/t/p/w342` + item.poster_path"
       alt=""
     />
+    <!-- secondary img -->
     <img
       v-else-if="item.backdrop_path"
       class="thumbnail"
       :src="`https://image.tmdb.org/t/p/w342` + item.backdrop_path"
       alt=""
     />
+    <!-- alternative img if not present in the api db -->
     <img v-else class="thumbnail" src="../assets/img/flags/no-img.png" alt="" />
+    <!-- CARD TEXT SECTION -->
     <div class="card-txt">
+      <!-- TITLE -->
       <h3>{{ getTitle }}</h3>
       <p v-show="item.title != item.original_title">
         {{ getOriginalTitle }}
       </p>
+      <!-- LANGUAGE -->
       <div class="language">
         Language:
         <img
@@ -179,7 +197,9 @@ export default {
 
         <span v-else>{{ item.original_language }}</span>
       </div>
+      <!-- DESCRIPTION -->
       <div class="description">{{ item.overview }}</div>
+      <!-- RATINGS -->
       <p class="rating">
         <span>
           {{ item.vote_average }}
@@ -194,6 +214,7 @@ export default {
           class="fa-regular fa-star"
         ></i>
       </p>
+      <!-- CAST -->
       <p class="cast">
         <button
           @click="
@@ -218,6 +239,7 @@ export default {
           >&nbsp;
         </span>
       </p>
+      <!-- GENRES -->
       <p class="genres">
         <button
           @click="
@@ -238,6 +260,7 @@ export default {
           >&nbsp;</span
         >
       </p>
+      <!-- /CARD TEXT SECTION -->
     </div>
   </div>
 </template>

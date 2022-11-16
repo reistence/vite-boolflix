@@ -1,9 +1,6 @@
 <script>
 import { store } from "../store";
 import axios from "axios";
-
-// import SeriesResultCard from "./SeriesResultCard.vue";
-
 import ResultCard from "./ResultCard.vue";
 
 export default {
@@ -11,6 +8,7 @@ export default {
   data() {
     return {
       store,
+      //empty arrays to store the genres
       movieGenreList: [],
       tvGenreList: [],
     };
@@ -20,6 +18,7 @@ export default {
     // SeriesResultCard,
   },
   created() {
+    // 2 axios GET to get the list of genres for movies and tv-series
     const params = {
       api_key: store.apiKey,
     };
@@ -52,6 +51,7 @@ export default {
       });
   },
   methods: {
+    // filter the store.movies according to the chosen select option
     filterMovies() {
       store.filteredMovies = store.movies.filter((movie) =>
         movie.genre_ids.includes(store.selectedMovieGenre.id)
@@ -59,6 +59,7 @@ export default {
       // console.log(store.filteredMovies);
       return store.filteredMovies;
     },
+    // filter the store.series according to the chosen select option
     filterTvSeries() {
       store.filteredTvSeries = store.series.filter((serie) =>
         serie.genre_ids.includes(store.selectedTvGenre.id)
@@ -71,6 +72,7 @@ export default {
 </script>
 
 <template>
+  <!-- startpoint of the app -->
   <div
     class="entry-message"
     v-if="store.movies.length === 0 && store.series.length === 0"
@@ -82,7 +84,7 @@ export default {
     </p>
   </div>
 
-  <!-- FILTERS INPUT-->
+  <!-- FILTERS INPUTs-->
   <div v-else class="filters">
     <div>
       <label for="movie-genres-list">Movies: </label>
@@ -93,7 +95,7 @@ export default {
           v-model="store.selectedMovieGenre"
           @change="filterMovies"
         >
-          <option value="">Choose a Genre &nbsp; &nbsp;</option>
+          <option value="">Choose a genre &nbsp; &nbsp;</option>
           <option v-for="genre in this.movieGenreList" :value="genre">
             {{ genre.name }}
           </option>
@@ -110,7 +112,7 @@ export default {
           v-model="store.selectedTvGenre"
           @change="filterTvSeries"
         >
-          <option value="">Choose a Genre &nbsp; &nbsp;</option>
+          <option value="">Choose a genre &nbsp; &nbsp;</option>
           <option v-for="genre in this.tvGenreList" :value="genre">
             {{ genre.name }}
           </option>
@@ -118,7 +120,7 @@ export default {
       </div>
     </div>
   </div>
-  <!-- /FILTERS INPUT-->
+  <!-- /FILTERS INPUTs-->
   <!-- FILM SECTION NO GENRE -->
   <section v-if="store.movies.length && !store.filteredMovies.length">
     <h2>Movies</h2>

@@ -15,6 +15,7 @@ export default {
     };
   },
   methods: {
+    // combined axios GET to retrieve movies and tv-series accordind to the input field value
     getContent() {
       const params = {
         api_key: store.apiKey,
@@ -31,6 +32,7 @@ export default {
       store.filteredMovies = [];
       store.filteredTvSeries = [];
     },
+    // axios GET to retrieve the movies
     getMovies(params) {
       let moviesUrl = store.apiMovieURL;
       axios
@@ -42,7 +44,7 @@ export default {
           // console.log(this.store.movies);
         });
     },
-
+    // axios GET to retrieve the tv-series
     getTvSeries(params) {
       let serieUrl = store.apiSeriesURL;
 
