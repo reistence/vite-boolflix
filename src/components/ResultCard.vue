@@ -58,7 +58,7 @@ export default {
           })
           .then((resp) => {
             this.movieCast = resp.data.cast.slice(0, 5);
-            console.log(this.movieCast);
+            // console.log(this.movieCast);
             if (this.movieCast.length === 0) {
               this.noCastInfo = true;
             }

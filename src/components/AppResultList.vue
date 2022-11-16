@@ -71,13 +71,17 @@ export default {
 </script>
 
 <template>
-  <p
+  <div
     class="entry-message"
     v-if="store.movies.length === 0 && store.series.length === 0"
   >
-    Welcome!<br />Insert a query in order to search through our Film and TV
-    Series database
-  </p>
+    <p>
+      <span> Welcome! </span>
+      <br />Insert a query in order to search through our Film and TV Series
+      database
+    </p>
+  </div>
+
   <!-- FILTERS INPUT-->
   <div v-else class="filters">
     <div>
@@ -191,9 +195,31 @@ export default {
 
 <style lang="scss" scoped>
 .entry-message {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
+  height: 100%;
+  position: relative;
+  background-image: url(../assets/img/flags/start.jpg);
+  background-size: cover;
+
+  p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.3rem;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.723);
+    width: 60%;
+    padding: 1.5em 0.5em;
+    span {
+      color: red;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
 }
 
 .filters {

@@ -64,7 +64,9 @@ export default {
     <div class="container">
       <div class="header-left">
         <div class="logo">
-          <h1>Boolflix</h1>
+          <a href=""
+            ><img src="../assets/img/flags/netflix-logo.png" alt=""
+          /></a>
         </div>
       </div>
       <div class="header-right">
@@ -86,6 +88,7 @@ header {
 }
 .container {
   width: 95%;
+  height: 100%;
   padding: 0.2em 0.5em;
   margin: 0 auto;
   display: flex;
@@ -95,10 +98,18 @@ header {
   color: red;
 }
 
-h1 {
-  font-size: 2.5rem;
+.header-left {
+  width: 30%;
+  .logo {
+    width: 100%;
+    a {
+      img {
+        max-height: 5em;
+        object-fit: cover;
+      }
+    }
+  }
 }
-
 .header-right {
   width: 40%;
 }
